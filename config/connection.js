@@ -1,16 +1,15 @@
-const mongoose = require('mongoose');
+require('dotenv').config();
 
-const connectDB = async () => {
-  try {
-    await mongoose.connect(process.env.MONGODB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-    console.log('Connected to the database');
-  } catch (error) {
-    console.error('Failed to connect to the database:', error.message);
-    process.exit(1);
-  }
-};
+const Sequelize = require('sequelize');
 
-module.exports = connectDB;
+const sequelize = process.env.JAWSDB_URL
+  ? new Sequelize(process.env.JAWSDB_URL)
+  : new Sequelize(process.env.DB_NAME, process.env.DB_USERNAME, process.env.DB_PASSWORD, {
+      host: process.env.DB_HOSTNAME,
+      dialect: 'mysql',
+      dialectOptions: {
+          decimalNumbers: true,
+      },
+  });
+
+module.exports = sequelize;
