@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Post = require('../models/Post');
+const { Post } = require('../models');
 
 // GET /post/create
 router.get('/create', (req, res) => {
@@ -61,9 +61,7 @@ router.post('/edit/:id', async (req, res) => {
     }
 
     // Update the post's title and content
-    post.title = title;
-    post.content = content;
-    await post.save();
+    await post.update({ title, content });
 
     // Post update successful, redirect to the dashboard or homepage
     // You can customize the redirect based on your application flow
