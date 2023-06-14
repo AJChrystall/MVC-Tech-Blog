@@ -1,0 +1,10 @@
+{{!-- views/dashboard.handlebars --}}
+{{#each posts}}
+  <div>
+    <h2>{{title}}</h2>
+    <p>{{content}}</p>
+    <p>Created at: {{createdAt}}</p>
+  </div>
+{{else}}
+  <p>No posts available.</p>
+{{/each}}
