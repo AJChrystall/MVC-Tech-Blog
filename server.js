@@ -14,8 +14,7 @@ app.set('view engine', 'hbs');
 app.engine(
   'hbs',
   exphbs.express4({
-    defaultLayout: path.join(__dirname, 'views/layouts/main'),
-    partialsDir: path.join(__dirname, 'views'),
+    defaultLayout: path.join('main'),
   })
 );
 
